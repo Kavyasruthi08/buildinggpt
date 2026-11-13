@@ -1,0 +1,99 @@
+1. Create health_info.txt
+Save this file in the same folder as app.py.
+
+Drinking sufficient water helps maintain hydration. Regular exercise
+supports physical fitness. Fruits and vegetables provide essential
+nutrients. Adequate sleep supports general wellbeing. Personal hygiene
+helps prevent infections.
+
+
+
+2. Python program (app.py)
+
+import ollama
+
+print("AI-POWERED MEDICAL INFORMATION ASSISTANT")
+
+# Read health information
+with open("health_info.txt", "r", encoding="utf-8") as file:
+    health_information = file.read()
+
+print("\nAsk a general health information question.")
+print("Type exit to stop.")
+
+while True:
+
+    # Get user question
+    question = input("\nEnter your question: ")
+
+    if question.lower() == "exit":
+        print("\nThank you for using the assistant!")
+        break
+
+    # Create prompt
+    prompt = f"""
+    You are a general health information assistant.
+
+    Use ONLY the information below to answer the question.
+
+    Do not diagnose diseases or prescribe medicines.
+    If the information is not available, say so.
+
+    Health Information:
+    {health_information}
+
+    Question: {question}
+    """
+
+    # Connect to Ollama
+    response = ollama.chat(
+        model="qwen2.5:7b",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+
+    answer = response["message"]["content"]
+
+    # Display answer
+    print("\nAssistant:", answer)
+
+    # Display medical disclaimer
+    print("\nDisclaimer: This is general educational information "
+          "and is not a substitute for professional medical advice.")
+
+
+3. Sample input
+AI-POWERED MEDICAL INFORMATION ASSISTANT
+
+Ask a general health information question.
+Type exit to stop.
+
+Enter your question: Why is drinking water important?
+
+
+4. Expected output
+Assistant:
+
+Drinking sufficient water helps maintain hydration. It is important for keeping the body hydrated and supporting general wellbeing.
+
+Medical Disclaimer
+
+This is general educational information and is not a substitute for professional medical advice.
+
+5. Another sample input
+Enter your question: Why is exercise important?
+
+
+Expected response:
+Assistant: Regular exercise supports physical fitness
+and helps maintain general wellbeing.
+
+Disclaimer: This is general educational information
+and is not a substitute for professional medical advice.
+
+
+6. Exit the chatbot
+Enter your question: exit
+
+Thank you for using the assistant!
