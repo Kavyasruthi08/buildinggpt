@@ -1,0 +1,104 @@
+1. Create courses.csv
+Save this file in the same folder as app.py.
+
+Course,Category,Level
+Python Programming,Programming,Beginner
+Machine Learning,Artificial Intelligence,Intermediate
+Data Science,Analytics,Beginner
+Cyber Security,Security,Intermediate
+Computer Networks,Networking,Beginner
+Deep Learning,Artificial Intelligence,Advanced
+
+
+
+2. Python program (app.py)
+
+import ollama
+import csv
+
+print("PERSONALIZED COURSE RECOMMENDATION SYSTEM")
+
+# Read course information
+courses = []
+
+with open("courses.csv", "r", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        courses.append(row)
+
+# Display available courses
+print("\nAVAILABLE COURSES:\n")
+
+for course in courses:
+    print(course)
+
+# Get student details
+name = input("\nEnter student name: ")
+interest = input("Enter your interest: ")
+skill = input("Enter skill level (Beginner/Intermediate/Advanced): ")
+
+# Create prompt
+prompt = f"""
+You are a Personalized Course Recommendation Assistant.
+
+Student Name: {name}
+Student Interest: {interest}
+Student Skill Level: {skill}
+
+Available Courses:
+{courses}
+
+Recommend exactly three suitable courses ONLY from the available list.
+
+Give a short explanation for each recommendation.
+Consider the student's interest and skill level.
+
+Do not invent courses.
+If fewer than three courses are suitable, recommend only suitable
+courses from the list.
+"""
+
+# Connect to Ollama
+response = ollama.chat(
+    model="qwen2.5:7b",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+result = response["message"]["content"]
+
+# Display recommendations
+print("\nRECOMMENDED COURSES:\n")
+print(result)
+
+# Save result
+with open("recommendations.csv", "w", encoding="utf-8") as file:
+    file.write(result)
+
+print("\nSaved successfully in recommendations.csv")
+
+
+3. Sample input
+PERSONALIZED COURSE RECOMMENDATION SYSTEM
+
+Enter student name: Arun
+Enter your interest: Artificial Intelligence
+Enter skill level (Beginner/Intermediate/Advanced): Beginner
+
+
+4. Expected output
+RECOMMENDED COURSES:
+
+1. Python Programming
+   Reason: Python is a beginner-friendly programming
+   language and provides a foundation for AI.
+
+2. Data Science
+   Reason: This course introduces data analysis
+   concepts useful in Artificial Intelligence.
+
+3. Machine Learning
+   Reason: This course introduces machine learning
+   concepts related to Artificial Intelligence
