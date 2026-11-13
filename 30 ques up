@@ -1,0 +1,1189 @@
+GPT-4 LAB – 30 COMPLETE STANDALONE PROGRAMS
+Every question below has a complete independent Python program. Each program includes the reusable Ollama connection, display function, and save function where needed. You can run each question separately.
+Common setup (do this once)
+•	Install the requests package: pip install requests
+•	Download the model: ollama pull llama3.2
+•	Keep Ollama running while executing the Python program.
+•	Save the required question code as a .py file and run it in VS Code.
+•	For Questions 7 and 27, create resume.txt in the same folder and paste resume content into it.
+•	The FAQ data in Questions 8 and 28 is sample data; replace it with the actual FAQ dataset if your question supplies one.
+ 
+Question 1: Grammar Correction Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a sentence or paragraph: ")
+prompt = f"""Correct grammatical and spelling errors in the text.
+Preserve the original meaning. Return the corrected text.
+
+Text: {text}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "corrected_text.txt")
+
+ 
+Question 2: Sentiment Analysis Application
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+review = input("Enter a customer review: ")
+prompt = f"""Analyze this customer review.
+Classify it as Positive, Negative or Neutral.
+Give a brief explanation for the classification.
+
+Review: {review}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 3: AI-Based MCQ Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+topic = input("Enter a topic: ")
+prompt = f"""Generate five multiple-choice questions about {topic}.
+Give four options (A, B, C and D) for each question.
+Show the correct answer for every question."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 4: AI Study Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+topic = input("Enter an academic topic: ")
+prompt = f"""Explain {topic} in simple words.
+Give one suitable example to help a student understand it."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 5: AI Flashcard Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+topic = input("Enter a topic: ")
+prompt = f"""Generate five study flashcards about {topic}.
+For each flashcard, provide a Question and its Answer.
+Use a clear numbered format."""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "flashcards.txt")
+
+ 
+Question 6: Meeting Minutes Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+notes = input("Enter meeting notes: ")
+prompt = f"""Convert these notes into structured meeting minutes.
+Include:
+1. Meeting summary
+2. Important decisions
+3. Action items
+
+Meeting notes:
+{notes}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "meeting_minutes.txt")
+
+ 
+Question 7: AI Resume Analyzer
+Note: Create resume.txt in the same folder before running this program.
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+try:
+    with open("resume.txt", "r", encoding="utf-8") as file:
+        resume = file.read()
+except FileNotFoundError:
+    print("Error: Create resume.txt in the same folder as this program.")
+    raise SystemExit
+
+prompt = f"""Analyze this resume.
+Identify the candidate's skills and qualifications.
+Generate a brief resume summary.
+Suggest areas for improvement.
+
+Resume:
+{resume}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 8: College FAQ Chatbot
+Note: The program includes a small sample FAQ dataset.
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+faqs = """
+Admission: Applications are submitted through the college admission portal.
+Courses: The college offers undergraduate and postgraduate courses.
+Library: Library timings are 9 AM to 5 PM.
+Examination: Examination schedules are announced by the college.
+"""
+
+question = input("Ask a college-related question: ")
+prompt = f"""Answer the question using only the FAQ information below.
+If the answer is not available, clearly say:
+"The requested information is not found in the FAQ dataset."
+
+FAQ DATA:
+{faqs}
+
+Question: {question}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 9: Customer Feedback Analyzer
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+feedback = input("Enter customer feedback: ")
+prompt = f"""Analyze this customer feedback.
+1. Identify the main complaint or appreciation.
+2. Classify it as Positive, Negative or Neutral.
+3. Suggest an appropriate action.
+
+Feedback:
+{feedback}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 10: Interview Preparation Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter technical subject: ")
+level = input("Enter difficulty (Beginner/Intermediate/Advanced): ")
+prompt = f"""Generate five technical interview questions on {subject}.
+Difficulty level: {level}
+Provide an answer for each question."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 11: AI Story Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+topic = input("Enter story topic: ")
+genre = input("Enter genre (Fantasy/Adventure/Mystery/Science Fiction): ")
+audience = input("Enter target audience (Children/Teenagers/Adults): ")
+prompt = f"""Write a short story based on these details.
+Topic: {topic}
+Genre: {genre}
+Target audience: {audience}
+Use language suitable for the target audience."""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "story.txt")
+
+ 
+Question 12: Text Translation Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a paragraph: ")
+language = input("Enter target language: ")
+prompt = f"""Translate the following paragraph into {language}.
+Preserve the original meaning.
+
+Paragraph:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "translated_text.txt")
+
+ 
+Question 13: AI Text Summarizer
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a long paragraph: ")
+prompt = f"""Create a concise summary of the following text.
+Also identify its main ideas.
+
+Text:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "summary.txt")
+
+ 
+Question 14: AI Question Paper Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter subject: ")
+topic = input("Enter topic within the subject: ")
+number = input("Enter number of questions: ")
+prompt = f"""Generate {number} questions with answers.
+Subject: {subject}
+Topic: {topic}
+Generate the requested number of questions.
+Provide an answer for every question."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 15: AI Paragraph Rewriter
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a paragraph: ")
+style = input("Enter style (Formal/Simple/Professional): ")
+prompt = f"""Rewrite the paragraph in a {style} writing style.
+Preserve the original meaning.
+
+Paragraph:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "rewritten_text.txt")
+
+ 
+Question 16: AI Keyword Extractor
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a paragraph: ")
+prompt = f"""Extract the important keywords and key phrases.
+Also identify the main concepts.
+Present the results in a clear, readable bullet list.
+
+Paragraph:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 17: AI Assignment Topic Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter subject: ")
+interest = input("Enter area of interest: ")
+prompt = f"""Generate five relevant assignment topics.
+Subject: {subject}
+Area of interest: {interest}
+Give a brief description for each topic."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 18: AI Product Description Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+name = input("Enter product name: ")
+features = input("Enter product features: ")
+customers = input("Enter target customers: ")
+prompt = f"""Write an attractive product description.
+Product name: {name}
+Features: {features}
+Target customers: {customers}
+Use clear and persuasive language."""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "product_description.txt")
+
+ 
+Question 19: AI Daily Task Planner
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+tasks = input("Enter your tasks: ")
+available_time = input("Enter available time: ")
+prompt = f"""Create a practical daily schedule.
+Tasks: {tasks}
+Available time: {available_time}
+Arrange the tasks into suitable time slots.
+Present the final plan clearly."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 20: AI Interview Preparation Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter technical subject: ")
+level = input("Enter difficulty (Beginner/Intermediate/Advanced): ")
+prompt = f"""Generate five technical interview questions on {subject}.
+Difficulty level: {level}
+Provide answers to all five questions."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 21: AI Grammar Correction Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter a sentence or paragraph: ")
+prompt = f"""Identify and correct grammatical and spelling errors.
+Preserve the original meaning.
+Return the corrected text.
+
+Text:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "corrected_text.txt")
+
+ 
+Question 22: Sentiment Analysis Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+text = input("Enter customer review or feedback: ")
+prompt = f"""Analyze the sentiment of the given text.
+Classify it as Positive, Negative or Neutral.
+Give a brief explanation.
+
+Text:
+{text}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 23: AI-Based MCQ Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter subject: ")
+topic = input("Enter topic: ")
+prompt = f"""Generate five multiple-choice questions.
+Subject: {subject}
+Topic: {topic}
+Give four options (A, B, C and D) for each question.
+Identify the correct answer for every question."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 24: AI Study Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+topic = input("Enter academic topic: ")
+prompt = f"""Explain {topic} in simple words.
+Give one relevant example.
+List three important points to remember."""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 25: AI Flashcard Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+subject = input("Enter subject: ")
+topic = input("Enter topic: ")
+prompt = f"""Generate five study flashcards for the subject {subject}
+on the topic {topic}.
+Each flashcard must contain a question and its corresponding answer."""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "flashcards.txt")
+
+ 
+Question 26: Meeting Minutes Generator
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+notes = input("Enter meeting notes: ")
+prompt = f"""Prepare concise meeting minutes from these notes.
+Include:
+1. Meeting summary
+2. Important decisions
+3. Action items
+4. Responsibilities mentioned in the notes
+
+Meeting notes:
+{notes}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "meeting_minutes.txt")
+
+ 
+Question 27: AI Resume Analyzer
+Note: Create resume.txt in the same folder before running this program.
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+try:
+    with open("resume.txt", "r", encoding="utf-8") as file:
+        resume = file.read()
+except FileNotFoundError:
+    print("Error: Create resume.txt in the same folder as this program.")
+    raise SystemExit
+
+prompt = f"""Analyze the resume.
+Identify important skills and qualifications.
+Generate a brief summary of the candidate's profile.
+Suggest improvements to the resume.
+
+Resume:
+{resume}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 28: College FAQ Chatbot
+Note: The program includes a small sample FAQ dataset.
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+faqs = """
+Admission: Applications are submitted through the college admission portal.
+Courses: The college offers undergraduate and postgraduate courses.
+Library: Library timings are 9 AM to 5 PM.
+Examination: Examination schedules are announced by the college.
+"""
+
+question = input("Enter a college-related question: ")
+prompt = f"""Answer using the FAQ dataset only.
+Do not invent information.
+If the requested information is unavailable, say that it is not
+found in the dataset.
+
+FAQ DATA:
+{faqs}
+
+Question:
+{question}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 29: Customer Feedback Analyzer
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+feedback = input("Enter customer feedback: ")
+prompt = f"""Analyze the customer feedback.
+Identify the main complaint or appreciation.
+Classify it as Positive, Negative or Neutral.
+Suggest an appropriate action.
+
+Feedback:
+{feedback}"""
+result = ask_ollama(prompt)
+display_result(result)
+
+ 
+Question 30: AI Email Assistant
+import requests
+
+# Reusable function to connect Python with Ollama
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+    response = requests.post(url, json=data)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# Reusable function to display the AI response
+def display_result(result):
+    print("\n----- AI OUTPUT -----\n")
+    print(result)
+
+# Reusable function to save the AI response in a text file
+def save_result(result, filename):
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(result)
+    print("\nResult saved in", filename)
+
+
+email = input("Enter original email content: ")
+tone = input("Enter tone (Formal/Friendly/Professional): ")
+prompt = f"""Generate an appropriate email reply in a {tone} tone.
+Include:
+1. A suitable subject
+2. Greeting
+3. Message
+4. Closing
+
+Original email:
+{email}"""
+result = ask_ollama(prompt)
+display_result(result)
+save_result(result, "email_reply.txt")
+
