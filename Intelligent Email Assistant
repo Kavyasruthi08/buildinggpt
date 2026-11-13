@@ -1,0 +1,72 @@
+1. Python program (app.py)
+
+import ollama
+
+print("INTELLIGENT EMAIL ASSISTANT")
+
+# Get user input
+email = input("Enter the received email: ")
+tone = input("Enter tone (Formal/Friendly/Professional): ")
+
+# Create prompt
+prompt = f"""
+You are an intelligent email assistant.
+
+Read the received email and write an appropriate reply.
+
+Received Email:
+{email}
+
+Tone: {tone}
+
+Include:
+1. Suitable subject line
+2. Greeting
+3. Email body
+4. Closing
+
+Do not invent facts that are not given in the email.
+Write a clear and appropriate email reply.
+"""
+
+# Connect to Ollama
+response = ollama.chat(
+    model="qwen2.5:7b",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+reply = response["message"]["content"]
+
+# Display generated email
+print("\nGENERATED EMAIL REPLY:\n")
+print(reply)
+
+# Save email reply
+with open("email_reply.txt", "w", encoding="utf-8") as file:
+    file.write(reply)
+
+print("\nEmail saved successfully as email_reply.txt")
+
+
+2. Sample input
+INTELLIGENT EMAIL ASSISTANT
+
+Enter the received email: Please attend the department meeting tomorrow.
+
+Enter tone (Formal/Friendly/Professional): Professional
+
+
+3. Expected output
+Subject: Confirmation of Attendance – Department Meeting
+
+Dear Sir/Madam,
+
+Thank you for the information regarding the department meeting scheduled for tomorrow.
+
+I confirm that I will attend the meeting.
+
+Best regards,
+
+[Your Name]
