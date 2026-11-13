@@ -1,0 +1,81 @@
+1. Python program (app.py)
+
+import ollama
+
+print("AI BLOG CONTENT GENERATOR")
+
+# Get user input
+topic = input("Enter blog topic: ")
+style = input("Enter writing style (Formal/Casual/Informative): ")
+
+# Create prompt
+prompt = f"""
+Write a blog on the topic: {topic}.
+
+Use this writing style: {style}.
+
+Include:
+1. An attractive title
+2. Introduction
+3. Main content with headings
+4. Conclusion
+
+Write the blog in simple and clear language.
+"""
+
+# Connect to Ollama
+response = ollama.chat(
+    model="qwen2.5:7b",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+blog = response["message"]["content"]
+
+# Display generated blog
+print("\nGENERATED BLOG:\n")
+print(blog)
+
+# Save blog in text file
+with open("blog.txt", "w", encoding="utf-8") as file:
+    file.write(blog)
+
+print("\nBlog saved successfully as blog.txt")
+
+
+2. Sample input
+AI BLOG CONTENT GENERATOR
+
+Enter blog topic: Benefits of Artificial Intelligence
+
+Enter writing style (Formal/Casual/Informative): Informative
+
+
+3. Expected output
+Benefits of Artificial Intelligence
+Introduction
+
+Artificial Intelligence (AI) is a technology that enables machines to perform tasks that normally require human intelligence.
+
+Main Content
+
+1. Healthcare
+
+AI helps doctors analyse medical information and supports healthcare services.
+
+2. Education
+
+AI provides personalized learning experiences for students.
+
+3. Transportation
+
+AI helps improve traffic management and transportation systems.
+
+4. Automation
+
+AI reduces repetitive work and improves productivity.
+
+Conclusion
+
+Artificial Intelligence plays an important role in modern life. It helps improve efficiency, productivity and decision-making in different fields.
